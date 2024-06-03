@@ -1,0 +1,13 @@
+body {
+    margin: 0
+}
+
+.chart-wrapper {
+    padding: 2 rem;
+    background-color: aliceblue;
+    height: 600px;
+}
+
+.chart-wrapper.dark {
+    background-color: #222;
+}
