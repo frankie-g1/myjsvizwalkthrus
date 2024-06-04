@@ -1,4 +1,19 @@
 [
+{
+    "id": "0",
+    "name": "Aberthaw Power Station Biomass",
+    "technology": "test tech",
+    "capacity": 35,
+    "lon": -3.407,
+    "lat": 51.387,
+    "region": "Wales",
+    "status": "Operational",
+    "operator": "RWE npower",
+    "yearSubmitted": 2004,
+    "dateSubmitted": "2004-04-16T00:00:00.000Z",
+    "yearGranted": 2004,
+    "daysUntilGranted": 140
+    },
  {
   "id": "1",
   "name": "Aberthaw Power Station Biomass",

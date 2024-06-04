@@ -204,11 +204,87 @@ function drawChart3(data){
     });
 }
 
+function drawChart4(data) { 
+
+    let regions = uniq(data.map(d => d.region))
+        .filter(d => d !== '')
+        .sort()
+
+    let technologies = uniq(data.map(d => d.technology))
+        .filter(d => d !== '')
+        .sort()
+    
+    let chartData = {
+        labels: regions,
+        datasets: technologies.map(i => {
+            return {
+                label: i,
+                data: []
+            }
+        })
+    }
+
+    //chartData.datasets.forEach(series => {
+    //    regions.forEach(region => {
+    //        series.data.push(tidy(
+    //            data,
+    //            filter(d=> d.technology == series.label && d.region == region),
+    //            count()
+    //        )).length
+    //    })
+    //})
+
+    //chartData.datasets.forEach(index =>{
+    //    regions.forEach(region => {
+    //        index.data.push(data.filter(d=> d.region === region && d.technology === index.label).length)
+    //    })
+    //})
+
+    chartData.datasets.forEach(index =>{
+        index.data = regions.map(region => {
+            return data.filter(d=> d.region === region && d.technology === index.label).length
+        })
+    })
+
+    console.log(chartData)
+
+    let chart4 = new Chart('chart4', {
+        type: 'bar',
+        data:chartData,
+
+        options:{
+            scales:{
+                x:{
+                    stacked: true
+                },
+                y:{
+                    title:{
+                        text:'Number of applications'
+                    }
+                }
+            },
+            plugins:{
+                title:{
+                    text: 'Number if applications (by region and technology) 1990-2022',
+                    font:{
+                        size: 12
+                    },
+                    display:true
+                },
+                legend:{
+                    display:true
+                }
+            },
+        }
+    })
+}
+
 
 function draw(data){
     drawChart1(data);
     drawChart2(data);
     drawChart3(data);
+    drawChart4(data);
 }
 
 fetch('./repd.json')
