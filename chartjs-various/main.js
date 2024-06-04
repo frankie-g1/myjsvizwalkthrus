@@ -9,6 +9,21 @@ Chart.defaults.scale.title.font = {size: 14};
 Chart.defaults.plugins.title.font.size = 18;
 Chart.defaults.plugins.title.display = true;
 
+const technologyPalette = {
+    'Advanced Conversion Technologies': '#FF9999',
+    'Anaerobic Digestion': '#C58882',
+    'Battery': '#B6A6CA',
+    'Biomass (co-firing)': '#50723C',
+    'Biomass (dedicated)': '#50723C',
+    'EfW Incineration': '#B56B45',
+    'Large Hydro': '#469B77',
+    'Small Hydro': '#469B77',
+    'Wind Onshore': '#6D98BA',
+    'Wind Offshore': '#6D98BA',
+    'Solar Photovoltaics': '#EEC170',
+    'Landfill Gas': '#AF4319'
+  };
+
 function drawChart1(data){
     let summary = tidy(
         data,
@@ -140,10 +155,14 @@ function drawChart3(data){
         })
     })
 
-    
-    console.log(chartData)
-
-
+    // Legend uses the same styling classes as the lines
+    chartData.datasets.forEach(series => {
+        let color = technologyPalette[series.label] || '#aaa';
+        // series.backgroundColor = color; // changes the whole line's color
+        series.borderWidth = 2;
+        series.radius = 2; // line graph dots
+    });
+//
     const chart3 = new Chart("chart3", {
         type : 'line',
         
@@ -151,12 +170,33 @@ function drawChart3(data){
         
         options:{
             plugins: {
-                title: {
+                title:{
                     display: true,
-                    text: ''
+                    text: 'Number of applications (by technology) 1990-2022'
                 },
-                legend: {
+                legend:{
                     display:true
+                }
+            },
+
+            scales:{
+                x:{
+                    title: {
+                        text: 'Year',
+                        display: true,
+                        font: {
+                            size: 12
+                        }
+                    }                        
+                },
+                y:{
+                    title: {
+                        text: 'Number of applications',
+                        display: true,
+                        font: {
+                            size: 12
+                        }
+                    }
                 }
             }
                 
