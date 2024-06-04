@@ -10,5 +10,10 @@
   },
   "devDependencies": {
     "vite": "^5.2.0"
+  },
+  "dependencies": {
+    "@tidyjs/tidy": "^2.5.2",
+    "chart.js": "^4.4.3",
+    "lodash-es": "^4.17.21"
   }
 }
