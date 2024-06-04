@@ -234,6 +234,7 @@ function drawChart4(data) {
     //    })
     //})
 
+    // same thing as below and above
     //chartData.datasets.forEach(index =>{
     //    regions.forEach(region => {
     //        index.data.push(data.filter(d=> d.region === region && d.technology === index.label).length)
