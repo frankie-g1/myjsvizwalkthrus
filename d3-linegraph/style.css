@@ -1,0 +1,11 @@
+g.x-axis path, g.y-axis path { 
+    /* the main line of the X axis (will be at top of graph 
+    despite it being axisBottom lol? */
+    display: none;
+  }
+
+  g.x-axis line {
+    /* lightens the tick lines */
+    stroke-dasharray: 1 1;
+    stroke: #ccc;
+  }
