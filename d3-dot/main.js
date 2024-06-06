@@ -47,16 +47,16 @@ function drawSVGBox(){
 
 function drawXAxis(data){
     let yearsExtent = extent(data, d=> d.dateSubmitted)
-    let xLength = width - leftMargin - rightMargin;
+    let xLength = width ;
     let ypos = height - bottomMargin;
     let xScale = scaleTime()
         .domain(yearsExtent)
         .range([0, xLength]);
 
     let xAxis = axisBottom(xScale)
+        .tickSize(ypos)
 
-    select('svg .x-axis') // notice you don't need access inner
-        .attr('transform', 'translate(' + rightMargin + ',' + ypos + ')')
+    select('.x-axis') // notice you don't need access inner
         .call(xAxis)
 
     return xScale
@@ -91,9 +91,7 @@ function drawData(data, xScale, yScale) {
         .domain([0, maxCapacity]) // allow input from 0 to maxCapacity
         .range([0, maxRadius]) // transform/convert it to 0 to maxRadius scale
 
-    //(radiusScale(data.map(d => d.capacity)))
-    //// these two are the 'same' in the sense that we are passing a mapped array to the function.
-    //(radiusScale([100, 200]))
+ 
 
 
     select('svg .points')
@@ -102,9 +100,9 @@ function drawData(data, xScale, yScale) {
         .join('circle')
         .attr('cx', d => xScale(d.dateSubmitted)) // these pass ints, not built indexes for array
         .attr('cy', d => yScale(d.technology))
-        .attr('r' , d => radiusScale(d.capacity))
-        .style('fill', d => statusColors[d.status])
-        .style('stroke', d => statusColors[d.status])
+        .attr('r' , d => radiusScale(d.capacity))    //(radiusScale(data.map(d => d.capacity)))
+        .style('fill', d => statusColors[d.status])    //// these two are the 'same' in the sense that we are passing a mapped array to the function.
+        .style('stroke', d => statusColors[d.status])    //(radiusScale([100, 200]))
         .style('fill-opacity', 0.5)
         .on('mouseover', (e, d) => {
             let html = '';
